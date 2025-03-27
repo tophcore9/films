@@ -6,9 +6,18 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import {useMoviesStore} from "~/stores/moviesStore";
 
 export default defineComponent({
-    name: "index"
+    name: "index",
+    data() {
+        return {
+            movies: useMoviesStore()
+        }
+    },
+    mounted() {
+        this.movies.fetchMovies();
+    }
 })
 </script>
 
