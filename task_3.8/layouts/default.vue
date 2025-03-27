@@ -51,8 +51,10 @@ body, html {
 
     max-width: 1440px;
     width: 100%;
+    height: 100%;
 }
 ._content {
+    padding-top: 90px;
     width: 100%;
     min-height: calc(100vh - 200px);
 }

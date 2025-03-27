@@ -1,5 +1,7 @@
 <template>
-
+    <div class="_wrapper">
+        Movies
+    </div>
 </template>
 
 <script lang="ts">
