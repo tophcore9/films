@@ -1,10 +1,10 @@
 <template>
     <div class="_container">
-        <div class="_wrapper">
-            <Nav/>
+        <Nav/>
+        <div class="_content">
             <slot></slot>
-            <Footer/>
         </div>
+        <Footer/>
     </div>
 </template>
 
@@ -23,12 +23,36 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@use 'assets/styles/reset.css';
+@use 'assets/styles/reset';
+@use 'assets/styles/fonts';
+@use 'assets/styles/variables';
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
 
 ._container {
+    min-height: 100%;
+    width: 100%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
 }
 ._wrapper {
+    margin: auto;
+    padding: 1rem;
 
+    max-width: 1440px;
+    width: 100%;
+}
+._content {
+    width: 100%;
+    min-height: calc(100vh - 200px);
 }
 </style>
