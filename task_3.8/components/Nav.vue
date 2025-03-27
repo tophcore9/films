@@ -3,7 +3,7 @@
         <div class="_wrapper">
             <div class="nav-content">
                 <div class="nav-left">
-                    <img src="/public/icons/logo.png" alt="">
+                    <Icon url="../icons/logo-dark.png" width="156px"/>
                     <div class="nav-left-links">
                         <NuxtLink class="nav-link" to="">Movies</NuxtLink>
                         <NuxtLink class="nav-link" to="">TV Shows</NuxtLink>
@@ -60,6 +60,10 @@ export default defineComponent({
 .nav-link {
     color: #1E1E1E;
     opacity: 0.8;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 .nav-favorites {
     &:hover {

@@ -43,6 +43,7 @@ body, html {
 
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 ._wrapper {
     margin: auto;
