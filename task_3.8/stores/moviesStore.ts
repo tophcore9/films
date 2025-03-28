@@ -1,31 +1,42 @@
 import { defineStore } from 'pinia';
 
+export interface IMovie {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: number[];
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+}
+
 export const useMoviesStore = defineStore('movies', {
     state: () => ({
-        movies: [],
+        movies: [] as IMovie[],
     }),
     actions: {
         async fetchMovies() {
             const config = useRuntimeConfig();
 
-            this.movies = await $fetch('https://api.themoviedb.org/3/movie/changes?page=1', {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    Authorization: `Bearer ${config.public.apiKey}`
+            const response = await $fetch<{page: number, results: IMovie[]}>(
+                `${config.public.baseUrl}movie/top_rated?language=en-US&page=1`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
                 }
-            });
-        },
-        async fetchMovie(id: number) {
-            const config = useRuntimeConfig();
+            );
 
-            return await $fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    Authorization: `Bearer ${config.public.apiKey}`
-                }
-            });
-        }
+            this.movies = response.results;
+        },
     }
 })

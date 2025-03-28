@@ -12,11 +12,11 @@ export default defineComponent({
     name: "index",
     data() {
         return {
-            movies: useMoviesStore()
+            moviesStore: useMoviesStore()
         }
     },
     mounted() {
-        this.movies.fetchMovies();
+        this.moviesStore.fetchMovies();
     }
 })
 </script>
