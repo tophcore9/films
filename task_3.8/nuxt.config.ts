@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     public: {
       apiKey: process.env.API_KEY,
       baseUrl: process.env.BASE_URL,
+      imagesUrl: process.env.IMAGES_URL,
     }
   }
 })

@@ -1,6 +1,10 @@
 <template>
     <div class="_wrapper">
         Movies
+
+        <div>
+            <img v-for="movie in moviesStore.movies" :src="moviesStore.getMovieUrl(movie.id)" alt="no">
+        </div>
     </div>
 </template>
 
@@ -15,8 +19,8 @@ export default defineComponent({
             moviesStore: useMoviesStore()
         }
     },
-    mounted() {
-        this.moviesStore.fetchMovies();
+    async mounted() {
+        await this.moviesStore.fetchMovies();
     }
 })
 </script>
