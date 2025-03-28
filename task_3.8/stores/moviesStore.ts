@@ -1,5 +1,10 @@
 import { defineStore } from 'pinia';
 
+export interface IGenre {
+    id: number;
+    name: string;
+}
+
 export interface IMovie {
     adult: boolean;
     backdrop_path: string;
@@ -17,9 +22,20 @@ export interface IMovie {
     vote_count: number;
 }
 
-export interface IGenre {
-    id: number;
-    name: string;
+export interface IMovieDetails extends IMovie {
+    belongs_to_collection: string;
+    budget: number;
+    genres: IGenre[];
+    homepage: string;
+    imdb_id: string;
+    origin_country: string[];
+    production_companies: [];
+    production_countries: [];
+    revenue: number;
+    runtime: number;
+    spoken_languages: [];
+    status: string;
+    tagline: string;
 }
 
 const movieImageWidth = 200;
@@ -61,13 +77,26 @@ export const useMoviesStore = defineStore('movies', {
             );
 
             this.genres = response.genres;
-            console.log(this.genres);
         },
-        getMovieUrl(id: number): string { // Getting the url of the image by movie's id
+        getMovieUrl(movieId: number): string { // Getting the url of the image by movie's id
             const config = useRuntimeConfig();
 
-            const movie: IMovie = this.movies.filter(movie => movie.id === id)[0];
+            const movie: IMovie = this.movies.filter(movie => movie.id === movieId)[0];
             return `${config.public.imagesUrl}w${movieImageWidth}/${movie.poster_path}`;
+        },
+        async getMovieDetails(movieId: number): Promise<IMovieDetails> {
+            const config = useRuntimeConfig();
+
+            return await $fetch<IMovieDetails>(
+                `${config.public.baseUrl}movie/${movieId}?language=en-US`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
         }
     },
 })
