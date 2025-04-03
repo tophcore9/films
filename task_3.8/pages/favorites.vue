@@ -21,7 +21,7 @@ export default defineComponent({
     },
     data() {
         return {
-            favoritesStore: useFavoritesStore()
+            favoritesStore: useFavoritesStore(),
         }
     },
 })

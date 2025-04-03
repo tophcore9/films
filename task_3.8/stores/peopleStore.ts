@@ -1,5 +1,4 @@
 import {defineStore} from "pinia";
-import type {IMovie} from "~/stores/moviesStore";
 
 export interface IPerson {
     gender: number;

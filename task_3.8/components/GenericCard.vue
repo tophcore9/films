@@ -1,11 +1,11 @@
 <template>
     <!-- MOVIES -->
-    <div class="card" v-if="movie !== undefined">
+    <div @click="navigateTo(`/movies/movie-${movie.id}`)" class="card" v-if="movie !== undefined && movie.poster_path !== null">
         <img class="card-image" :src="getImageUrl()" alt="no">
         <div class="card-body">
             <h4 class="_title-4">{{movie.title}}</h4>
-            <p class="card-text">{{movie.release_date}}</p>
-            <Button @click="favoritesStore.toggleMovieInFavorites(movie)" class="is-favorite" rounded width="3rem" height="3rem">
+            <p class="card-text">{{formatDate(movie.release_date)}}</p>
+            <Button @click.stop="favoritesStore.toggleMovieInFavorites(movie)" class="is-favorite" rounded width="3rem" height="3rem">
                 <Icon
                     width="1.5rem"
                     height="1.5rem"
@@ -18,13 +18,13 @@
     </div>
 
     <!-- PEOPLE -->
-    <div class="card" v-if="person !== undefined">
+    <div @click="navigateTo(`/people/person-${person.id}`)" class="card" v-if="person !== undefined && person.profile_path !== null">
         <img class="card-image" :src="getImageUrl()" alt="no">
         <div class="card-body">
             <h4 class="_title-4">{{person.name}}</h4>
             <p class="card-text">{{person.known_for_department}}</p>
         </div>
-        <Button @click="favoritesStore.togglePersonInFavorites(person)" class="is-favorite" rounded width="3rem" height="3rem">
+        <Button @click.stop="favoritesStore.togglePersonInFavorites(person)" class="is-favorite" rounded width="3rem" height="3rem">
             <Icon
                 width="1.5rem"
                 height="1.5rem"
@@ -33,6 +33,24 @@
                     : './icons/card-favorite.svg'"
             />
         </Button>
+    </div>
+
+    <!-- CAST MEMBER -->
+    <div @click="navigateTo(`/people/person-${castMember.id}`)" class="card" v-if="castMember !== undefined && castMember.profile_path !== null">
+        <img class="card-image" :src="getImageUrl()" alt="no">
+        <div class="card-body">
+            <h4 class="_title-4">{{castMember.name}}</h4>
+            <p class="card-text">{{castMember.character}}</p>
+        </div>
+    </div>
+
+    <!-- CREW MEMBER -->
+    <div @click="navigateTo(`/people/person-${crewMember.id}`)" class="card" v-if="crewMember !== undefined && crewMember.profile_path !== null">
+        <img class="card-image" :src="getImageUrl()" alt="no">
+        <div class="card-body">
+            <h4 class="_title-4">{{crewMember.name}}</h4>
+            <p class="card-text">{{crewMember.job}}</p>
+        </div>
     </div>
 </template>
 
@@ -63,7 +81,15 @@ export default defineComponent({
         person: {
             type: Object as PropType<IPerson>,
             default: undefined
-        }
+        },
+        castMember: {
+            type: Object as PropType<ICastMember>,
+            default: undefined
+        },
+        crewMember: {
+            type: Object as PropType<ICrewMember>,
+            default: undefined
+        },
     },
     methods: {
         getImageUrl(): string { // Getting the url of the image by movie's id
@@ -73,9 +99,19 @@ export default defineComponent({
 
             if (this.person !== undefined) path = this.person.profile_path;
             else if (this.movie !== undefined) path = this.movie.poster_path;
+            else if (this.castMember !== undefined) path = this.castMember.profile_path;
+            else if (this.crewMember !== undefined) path = this.crewMember.profile_path;
 
             return `${config.public.imagesUrl}w${this.imageWidth}/${path}`;
         },
+        formatDate(apiDate: string): string {
+            const date = new Date(apiDate);
+            return new Intl.DateTimeFormat('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            }).format(date);
+        }
     },
 })
 </script>
@@ -91,6 +127,10 @@ export default defineComponent({
 
     background-color: var(--secondary-color);
     border-radius: var(--card-border-radius);
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 .card-image {
     width: 100%;

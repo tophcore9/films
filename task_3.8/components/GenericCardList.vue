@@ -4,7 +4,13 @@
         <Card v-if="movies.length > 0" v-for="movie in movies" :movie="movie" :key="movie.id"/>
 
         <!-- PEOPLE -->
-        <Card v-else v-for="person in people" :person="person" :key="person.id"/>
+        <Card v-else-if="people.length > 0" v-for="person in people" :person="person" :key="person.id"/>
+
+        <!-- CAST MEMBERS -->
+        <Card v-else-if="castMembers.length > 0" v-for="castMember in castMembers" :cast-member="castMember" :key="castMember.id"/>
+
+        <!-- CREW MEMBERS -->
+        <Card v-else-if="crewMembers.length > 0" v-for="crewMember in crewMembers" :crew-member="crewMember" :key="crewMember.id"/>
     </div>
 </template>
 
@@ -24,6 +30,14 @@ export default defineComponent({
         },
         people: {
             type: Array as PropType<IPerson[]>,
+            default: []
+        },
+        castMembers: {
+            type: Array as PropType<ICastMember[]>,
+            default: []
+        },
+        crewMembers: {
+            type: Array as PropType<ICrewMember[]>,
             default: []
         },
     }

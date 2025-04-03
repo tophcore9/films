@@ -1,12 +1,17 @@
 <template>
     <div class="_wrapper">
-        <div class="movies-content">
-            <GenericCardList :movies="moviesStore.movies"/>
-            <Button
-                @click="moviesStore.fetchNextPage()"
-            >
-                Load more
-            </Button>
+        <div class="movies-container">
+            <div class="movies-filters">
+
+            </div>
+            <div class="movies-content">
+                <GenericCardList :movies="moviesStore.movies"/>
+                <Button
+                    @click="moviesStore.fetchNextPage()"
+                >
+                    Load more
+                </Button>
+            </div>
         </div>
     </div>
 </template>
@@ -38,11 +43,21 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.movies-container {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
 .movies-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+}
+.movies-filters {
+    min-width: 240px;
 }
 </style>
