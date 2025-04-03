@@ -42,13 +42,14 @@ export interface IMoviePeople {
 export const usePeopleStore = defineStore('people', {
     state: () => ({
         people: [] as IPerson[],
+        page: 1
     }),
     actions: {
         async fetchPeople() { // Fetching top rated people from TMDB
             const config = useRuntimeConfig();
 
             const response = await $fetch<{ results: IPerson[] }>(
-                `${config.public.baseUrl}person/popular?language=en-US&page=1`,
+                `${config.public.baseUrl}person/popular?page=${this.page++}`,
                 {
                     method: 'GET',
                     headers: {
@@ -64,7 +65,7 @@ export const usePeopleStore = defineStore('people', {
             const config = useRuntimeConfig();
 
             return await $fetch<IPersonDetails>(
-                `${config.public.baseUrl}person/${personId}?language=en-US`,
+                `${config.public.baseUrl}person/${personId}`,
                 {
                     method: 'GET',
                     headers: {
@@ -78,7 +79,7 @@ export const usePeopleStore = defineStore('people', {
             const config = useRuntimeConfig();
 
             return await $fetch<IMoviePeople>(
-                `${config.public.baseUrl}movie/${movieId}/credits?language=en-US`,
+                `${config.public.baseUrl}movie/${movieId}/credits`,
                 {
                     method: 'GET',
                     headers: {

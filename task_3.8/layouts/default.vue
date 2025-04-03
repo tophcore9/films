@@ -47,7 +47,7 @@ body, html {
 }
 ._wrapper {
     margin: auto;
-    padding: 1rem;
+    padding: 2rem 1rem;
 
     max-width: 1440px;
     width: 100%;

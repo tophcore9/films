@@ -44,13 +44,14 @@ export const useMoviesStore = defineStore('movies', {
     state: () => ({
         movies: [] as IMovie[],
         genres: [] as IGenre[],
+        page: 1
     }),
     actions: {
         async fetchMovies() { // Fetching top rated movies from TMDB
             const config = useRuntimeConfig();
 
             const response = await $fetch<{results: IMovie[]}>(
-                `${config.public.baseUrl}movie/top_rated?language=en-US&page=1`,
+                `${config.public.baseUrl}movie/top_rated?page=${this.page++}`,
                 {
                     method: 'GET',
                     headers: {
@@ -60,13 +61,13 @@ export const useMoviesStore = defineStore('movies', {
                 }
             );
 
-            this.movies = response.results;
+            this.movies.push(...response.results);
         },
         async fetchGenres() { // Fetching all the genres from TMDB
             const config = useRuntimeConfig();
 
             const response = await $fetch<{genres: IGenre[]}>(
-                `${config.public.baseUrl}genre/movie/list?language=en`,
+                `${config.public.baseUrl}genre/movie/list`,
                 {
                     method: 'GET',
                     headers: {
@@ -88,7 +89,7 @@ export const useMoviesStore = defineStore('movies', {
             const config = useRuntimeConfig();
 
             return await $fetch<IMovieDetails>(
-                `${config.public.baseUrl}movie/${movieId}?language=en-US`,
+                `${config.public.baseUrl}movie/${movieId}`,
                 {
                     method: 'GET',
                     headers: {
