@@ -23,7 +23,7 @@ export default defineComponent({
         return {
             favoritesStore: useFavoritesStore()
         }
-    }
+    },
 })
 </script>
 

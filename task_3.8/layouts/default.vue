@@ -12,12 +12,21 @@
 import {defineComponent} from 'vue'
 import Nav from '~/components/Nav.vue';
 import Footer from '~/components/Footer.vue';
+import {useFavoritesStore} from "~/stores/favoritesStore";
 
 export default defineComponent({
     name: "default",
     components: {
         Nav,
         Footer
+    },
+    data() {
+        return {
+            favoritesStore: useFavoritesStore()
+        }
+    },
+    mounted() {
+        this.favoritesStore.loadFavoritesFromSessionStorage();
     }
 })
 </script>
