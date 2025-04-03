@@ -1,7 +1,5 @@
 <template>
     <div class="_wrapper">
-        Movies
-
         <div>
             <img v-for="movie in moviesStore.movies" :src="moviesStore.getMovieUrl(movie.id)" alt="no">
         </div>

@@ -11,5 +11,8 @@ export default defineNuxtConfig({
       baseUrl: process.env.BASE_URL,
       imagesUrl: process.env.IMAGES_URL,
     }
+  },
+  routeRules: {
+    '/': {redirect: '/movies'}
   }
 })

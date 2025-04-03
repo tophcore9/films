@@ -5,18 +5,19 @@
                 <div class="nav-left">
                     <Icon :url="isScrolled ? '../icons/logo-white.png' : '../icons/logo-dark.png'" width="156px"/>
                     <div class="nav-left-links">
-                        <NuxtLink class="nav-link" to="">Movies</NuxtLink>
-                        <NuxtLink class="nav-link" to="">TV Shows</NuxtLink>
-                        <NuxtLink class="nav-link" to="">People</NuxtLink>
-                        <NuxtLink class="nav-link" to="">More</NuxtLink>
+                        <NuxtLink :class="handleCurrentPageClass('movies')" to="/movies">Movies</NuxtLink>
+                        <NuxtLink :class="handleCurrentPageClass('tv_shows')" to="/tv_shows">TV Shows</NuxtLink>
+                        <NuxtLink :class="handleCurrentPageClass('people')" to="/people">People</NuxtLink>
                     </div>
                 </div>
 
                 <div class="nav-right">
-                    <Icon
-                        class="nav-favorites"
-                        :url="isScrolled ? '../icons/nav-favorites-white.svg' : '../icons/nav-favorites.svg'"
-                    />
+                    <NuxtLink to="/favorites">
+                        <Icon
+                            class="nav-favorites"
+                            :url="handleFavoritesIconUrl"
+                        />
+                    </NuxtLink>
                     <Button>Login</Button>
                 </div>
             </div>
@@ -43,6 +44,28 @@ export default defineComponent({
     methods: {
         handleScroll() {
             this.isScrolled = window.scrollY > 0;
+        },
+        handleCurrentPageClass(pageName: string) {
+            if (useRoute().name?.toString().includes(pageName)) {
+                return 'nav-link nav-link-active';
+            }
+
+            return 'nav-link';
+        },
+    },
+    computed: {
+        handleFavoritesIconUrl() {
+            const isPageOpened = useRoute().name?.toString().includes('favorites');
+
+            if (isPageOpened) {
+                return '../icons/nav-favorites-active.svg';
+            }
+
+            if (this.isScrolled) {
+                return '../icons/nav-favorites-white.svg';
+            } else {
+                return '../icons/nav-favorites.svg';
+            }
         }
     },
     mounted() {
@@ -88,12 +111,18 @@ export default defineComponent({
     gap: 2rem;
 }
 .nav-link {
-    color: #1E1E1E;
+    color: var(--text-color);
     opacity: 0.8;
 
     &:hover {
         cursor: pointer;
+        opacity: 0.85;
     }
+}
+.nav-link-active {
+    color: var(--text-color);
+    opacity: 1;
+    font-weight: 500;
 }
 .nav-favorites {
     &:hover {
