@@ -1,9 +1,7 @@
 <template>
     <div class="_wrapper">
         <div class="people-content">
-            <div class="people">
-                <GenericCard v-for="person in peopleStore.people" :person="person"/>
-            </div>
+            <GenericCardList :people="peopleStore.people"/>
             <Button
                 @click="peopleStore.fetchNextPage()"
             >
@@ -37,8 +35,5 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     gap: 2rem;
-}
-.people {
-    width: 100%;
 }
 </style>

@@ -1,12 +1,20 @@
 <template>
-    <!--  MOVIES CARDS  -->
+    <!-- MOVIES -->
     <div class="card" v-if="movie !== undefined">
-        <img :src="getImageUrl()" alt="no">
+        <img class="card-image" :src="getImageUrl()" alt="no">
+        <div class="card-body">
+            <h4 class="_title-4">{{movie.title}}</h4>
+            <p class="card-text">{{movie.release_date}}</p>
+        </div>
     </div>
 
-    <!--  PEOPLE CARDS  -->
+    <!-- PEOPLE -->
     <div class="card" v-if="person !== undefined">
-        <img :src="getImageUrl()" alt="no">
+        <img class="card-image" :src="getImageUrl()" alt="no">
+        <div class="card-body">
+            <h4 class="_title-4">{{person.name}}</h4>
+            <p class="card-text">{{person.known_for_department}}</p>
+        </div>
     </div>
 </template>
 
@@ -47,6 +55,28 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .card {
-    display: inline-block;
+    padding: 10px;
+
+    width: 220px;
+    min-height: fit-content;
+
+    background-color: var(--secondary-color);
+    border-radius: var(--card-border-radius);
+}
+.card-image {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    border-radius: var(--card-border-radius);
+}
+.card-body {
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.card-text {
+    font-size: 15px;
 }
 </style>

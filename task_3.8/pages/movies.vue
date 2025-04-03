@@ -1,9 +1,7 @@
 <template>
     <div class="_wrapper">
         <div class="movies-content">
-            <div class="movies">
-                <GenericCard v-for="movie in moviesStore.movies" :movie="movie"/>
-            </div>
+            <GenericCardList :movies="moviesStore.movies"/>
             <Button
                 @click="moviesStore.fetchNextPage()"
             >
@@ -18,13 +16,13 @@ import {defineComponent} from 'vue';
 import {useMoviesStore} from "~/stores/moviesStore";
 import {usePeopleStore} from "~/stores/peopleStore";
 import Button from '~/components/Button.vue';
-import GenericCard from '~/components/GenericCard.vue';
+import GenericCardList from '~/components/GenericCardList.vue';
 
 export default defineComponent({
     name: "index",
     components: {
         Button,
-        GenericCard
+        GenericCard: GenericCardList
     },
     data() {
         return {
@@ -46,8 +44,5 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     gap: 2rem;
-}
-.movies {
-    width: 100%;
 }
 </style>

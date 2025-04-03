@@ -45,6 +45,7 @@ body, html {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
+
 ._wrapper {
     margin: auto;
     padding: 2rem 1rem;
@@ -53,9 +54,28 @@ body, html {
     width: 100%;
     height: 100%;
 }
+
 ._content {
     padding-top: 90px;
     width: 100%;
     min-height: calc(100vh - 200px);
+}
+
+._title-2, ._title-3, ._title-4 {
+    font-weight: 700;
+}
+
+._title-1 {
+    font-weight: 800;
+    font-size: 48px;
+}
+._title-2 {
+    font-size: 24px;
+}
+._title-3 {
+    font-size: 18px;
+}
+._title-4 {
+    font-size: 15px;
 }
 </style>
