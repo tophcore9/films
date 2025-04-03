@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import type {IMovie} from "~/stores/moviesStore";
 
 
 
@@ -39,6 +40,8 @@ export interface IMoviePeople {
     crew: ICrewMember[];
 }
 
+const personImageWidth = 200;
+
 export const usePeopleStore = defineStore('people', {
     state: () => ({
         people: [] as IPerson[],
@@ -49,7 +52,7 @@ export const usePeopleStore = defineStore('people', {
             const config = useRuntimeConfig();
 
             const response = await $fetch<{ results: IPerson[] }>(
-                `${config.public.baseUrl}person/popular?page=${this.page++}`,
+                `${config.public.baseUrl}person/popular?page=${this.page = 1}`,
                 {
                     method: 'GET',
                     headers: {
@@ -60,6 +63,22 @@ export const usePeopleStore = defineStore('people', {
             );
 
             this.people = response.results;
+        },
+        async fetchNextPage() { // Fetching top rated people from TMDB
+            const config = useRuntimeConfig();
+
+            const response = await $fetch<{ results: IPerson[] }>(
+                `${config.public.baseUrl}person/popular?page=${++this.page}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
+
+            this.people.push(...response.results);
         },
         async getPersonDetails(personId: number): Promise<IPersonDetails> {
             const config = useRuntimeConfig();
@@ -88,6 +107,12 @@ export const usePeopleStore = defineStore('people', {
                     }
                 }
             );
-        }
+        },
+        getPersonUrl(personId: number): string { // Getting the url of the image by movie's id
+            const config = useRuntimeConfig();
+
+            const person: IPerson = this.people.filter(person => person.id === personId)[0];
+            return `${config.public.imagesUrl}w${personImageWidth}/${person.profile_path}`;
+        },
     }
 });

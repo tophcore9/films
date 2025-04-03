@@ -5,7 +5,7 @@
                 <img v-for="movie in moviesStore.movies" :src="moviesStore.getMovieUrl(movie.id)" alt="no">
             </div>
             <Button
-                @click="moviesStore.fetchMovies()"
+                @click="moviesStore.fetchNextPage()"
                 class="load-more__button"
             >
                 Load more

@@ -51,7 +51,23 @@ export const useMoviesStore = defineStore('movies', {
             const config = useRuntimeConfig();
 
             const response = await $fetch<{results: IMovie[]}>(
-                `${config.public.baseUrl}movie/top_rated?page=${this.page++}`,
+                `${config.public.baseUrl}movie/top_rated?page=${this.page = 1}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
+
+            this.movies = response.results;
+        },
+        async fetchNextPage() { // Fetching top rated movies from TMDB
+            const config = useRuntimeConfig();
+
+            const response = await $fetch<{results: IMovie[]}>(
+                `${config.public.baseUrl}movie/top_rated?page=${++this.page}`,
                 {
                     method: 'GET',
                     headers: {
