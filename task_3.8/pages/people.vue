@@ -1,12 +1,11 @@
 <template>
     <div class="_wrapper">
         <div class="people-content">
-            <div>
-                <img v-for="person in peopleStore.people" :src="peopleStore.getPersonUrl(person.id)" alt="no">
+            <div class="people">
+                <GenericCard v-for="person in peopleStore.people" :person="person"/>
             </div>
             <Button
                 @click="peopleStore.fetchNextPage()"
-                class="load-more__button"
             >
                 Load more
             </Button>
@@ -38,5 +37,8 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     gap: 2rem;
+}
+.people {
+    width: 100%;
 }
 </style>

@@ -1,12 +1,11 @@
 <template>
     <div class="_wrapper">
         <div class="movies-content">
-            <div>
-                <img v-for="movie in moviesStore.movies" :src="moviesStore.getMovieUrl(movie.id)" alt="no">
+            <div class="movies">
+                <GenericCard v-for="movie in moviesStore.movies" :movie="movie"/>
             </div>
             <Button
                 @click="moviesStore.fetchNextPage()"
-                class="load-more__button"
             >
                 Load more
             </Button>
@@ -19,11 +18,13 @@ import {defineComponent} from 'vue';
 import {useMoviesStore} from "~/stores/moviesStore";
 import {usePeopleStore} from "~/stores/peopleStore";
 import Button from '~/components/Button.vue';
+import GenericCard from '~/components/GenericCard.vue';
 
 export default defineComponent({
     name: "index",
     components: {
-        Button
+        Button,
+        GenericCard
     },
     data() {
         return {
@@ -46,7 +47,7 @@ export default defineComponent({
     align-items: center;
     gap: 2rem;
 }
-.load-more__button {
-    margin: auto;
+.movies {
+    width: 100%;
 }
 </style>

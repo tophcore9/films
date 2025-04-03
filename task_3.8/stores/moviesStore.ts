@@ -38,8 +38,6 @@ export interface IMovieDetails extends IMovie {
     tagline: string;
 }
 
-const movieImageWidth = 200;
-
 export const useMoviesStore = defineStore('movies', {
     state: () => ({
         movies: [] as IMovie[],
@@ -94,12 +92,6 @@ export const useMoviesStore = defineStore('movies', {
             );
 
             this.genres = response.genres;
-        },
-        getMovieUrl(movieId: number): string { // Getting the url of the image by movie's id
-            const config = useRuntimeConfig();
-
-            const movie: IMovie = this.movies.filter(movie => movie.id === movieId)[0];
-            return `${config.public.imagesUrl}w${movieImageWidth}/${movie.poster_path}`;
         },
         async getMovieDetails(movieId: number): Promise<IMovieDetails> {
             const config = useRuntimeConfig();
