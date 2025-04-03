@@ -1,8 +1,6 @@
 import {defineStore} from "pinia";
 import type {IMovie} from "~/stores/moviesStore";
 
-
-
 export interface IPerson {
     gender: number;
     id: number;
@@ -107,12 +105,6 @@ export const usePeopleStore = defineStore('people', {
                     }
                 }
             );
-        },
-        getPersonUrl(personId: number): string { // Getting the url of the image by movie's id
-            const config = useRuntimeConfig();
-
-            const person: IPerson = this.people.filter(person => person.id === personId)[0];
-            return `${config.public.imagesUrl}w${personImageWidth}/${person.profile_path}`;
         },
     }
 });

@@ -1,6 +1,7 @@
 <template>
     <button
         class="button"
+        :class="rounded ? 'rounded' : ''"
         :style="{
             backgroundColor: backgroundColor,
             width: width,
@@ -29,6 +30,10 @@ export default defineComponent({
             type: String,
             default: "3rem"
         },
+        rounded: {
+            type: Boolean,
+            default: false
+        }
     }
 })
 </script>
@@ -36,6 +41,10 @@ export default defineComponent({
 <style scoped lang="scss">
 .button {
     padding: 0 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     border: none;
     border-radius: var(--input-border-radius);
@@ -50,5 +59,8 @@ export default defineComponent({
     &:active {
         transform: scale(1.1);
     }
+}
+.rounded {
+    border-radius: 50%;
 }
 </style>

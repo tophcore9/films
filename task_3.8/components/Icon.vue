@@ -3,8 +3,8 @@
         class="icon"
         :style="{
             backgroundImage: `url(${url})`,
-            width: width,
-            height: height,
+            minWidth: width,
+            minHeight: height,
         }"
     ></div>
 </template>

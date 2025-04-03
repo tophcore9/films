@@ -5,6 +5,15 @@
         <div class="card-body">
             <h4 class="_title-4">{{movie.title}}</h4>
             <p class="card-text">{{movie.release_date}}</p>
+            <Button @click="favoritesStore.toggleMovieInFavorites(movie)" class="is-favorite" rounded width="3rem" height="3rem">
+                <Icon
+                    width="1.5rem"
+                    height="1.5rem"
+                    :url="favoritesStore.isMovieInFavorites(movie.id)
+                    ? './icons/card-favorite-active.svg'
+                    : './icons/card-favorite.svg'"
+                />
+            </Button>
         </div>
     </div>
 
@@ -15,17 +24,35 @@
             <h4 class="_title-4">{{person.name}}</h4>
             <p class="card-text">{{person.known_for_department}}</p>
         </div>
+        <Button @click="favoritesStore.togglePersonInFavorites(person)" class="is-favorite" rounded width="3rem" height="3rem">
+            <Icon
+                width="1.5rem"
+                height="1.5rem"
+                :url="favoritesStore.isPersonInFavorites(person.id)
+                    ? './icons/card-favorite-active.svg'
+                    : './icons/card-favorite.svg'"
+            />
+        </Button>
     </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent} from 'vue';
+import Button from '~/components/Button.vue';
+import Icon from '~/components/Icon.vue';
+import {useFavoritesStore} from "~/stores/favoritesStore";
 
 export default defineComponent({
     name: "GenericCard",
+    components: {
+        Button,
+        Icon
+    },
     data() {
         return {
-            imageWidth: 200
+            imageWidth: 200,
+            favoritesStore: useFavoritesStore(),
+            isFavorite: false
         }
     },
     props: {
@@ -49,13 +76,15 @@ export default defineComponent({
 
             return `${config.public.imagesUrl}w${this.imageWidth}/${path}`;
         },
-    }
+    },
 })
 </script>
 
 <style scoped lang="scss">
 .card {
     padding: 10px;
+
+    position: relative;
 
     width: 220px;
     min-height: fit-content;
@@ -78,5 +107,10 @@ export default defineComponent({
 }
 .card-text {
     font-size: 15px;
+}
+.is-favorite {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 </style>
