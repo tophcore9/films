@@ -1,7 +1,7 @@
 <template>
     <div class="_wrapper">
         <div class="people-content">
-            <GenericCardList :people="peopleStore.people" :load-func="peopleStore.fetchNextPage"/>
+            <GenericCardList :people="peopleStore.people" :next-page-handler="peopleStore.fetchNextPage"/>
         </div>
     </div>
 </template>

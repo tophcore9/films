@@ -29,8 +29,6 @@ export default defineComponent({
     },
     mounted() {
         this.favoritesStore.loadFavoritesFromSessionStorage();
-        this.moviesStore.fetchGenres();
-        this.moviesStore.fetchLanguages();
     }
 })
 </script>

@@ -2,7 +2,9 @@
     <div class="_wrapper">
         <div class="movies-container">
             <div class="movies-filters">
-
+                <DropDown :is-opened="false" title="Filters">
+                    asdlkfj
+                </DropDown>
             </div>
             <div class="movies-content">
                 <GenericCardList :movies="moviesStore.movies" :next-page-handler="moviesStore.fetchNextPage"/>
@@ -17,12 +19,14 @@ import {useMoviesStore} from "~/stores/moviesStore";
 import {usePeopleStore} from "~/stores/peopleStore";
 import Button from '~/components/Button.vue';
 import GenericCardList from '~/components/GenericCardList.vue';
+import DropDown from '~/components/DropDown.vue';
 
 export default defineComponent({
     name: "index",
     components: {
         Button,
-        GenericCard: GenericCardList
+        GenericCardList,
+        DropDown,
     },
     data() {
         return {
@@ -44,6 +48,7 @@ export default defineComponent({
 
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 }
 .movies-content {
     display: flex;
@@ -53,6 +58,6 @@ export default defineComponent({
     gap: 2rem;
 }
 .movies-filters {
-    min-width: 240px;
+    min-width: 225px;
 }
 </style>

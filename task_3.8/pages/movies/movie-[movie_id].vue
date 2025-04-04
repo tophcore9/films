@@ -81,7 +81,7 @@ minors:
                     </div>
                     <div class="details-block">
                         <h3 class="_title-3">Original Language</h3>
-                        <p>{{moviesStore.getLanguageNameByISO(movie.original_language)}}</p>
+                        <p>{{movieLanguage}}</p>
                     </div>
                     <div class="details-block">
                         <h3 class="_title-3">Budget</h3>
@@ -136,7 +136,8 @@ export default defineComponent({
             moviePeople: {} as IMoviePeople,
             movieKeywords: [] as IKeyword[],
             isInFavorites: false,
-            movieReleaseDate: new Date()
+            movieReleaseDate: new Date(),
+            movieLanguage: ''
         }
     },
     methods: {
@@ -173,6 +174,7 @@ export default defineComponent({
         this.movieKeywords = await this.moviesStore.getMovieKeywords(movieId);
         this.isInFavorites = this.favoritesStore.isMovieInFavorites(movieId);
         this.movieReleaseDate = new Date(this.movie.release_date);
+        this.movieLanguage = await this.moviesStore.getLanguageNameByISO(this.movie.original_language);
     }
 })
 </script>
