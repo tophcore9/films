@@ -5,6 +5,17 @@ export interface IGenre {
     name: string;
 }
 
+export interface IKeyword {
+    id: number;
+    name: string;
+}
+
+export interface ILanguage {
+    iso_639_1: string;
+    english_name: string;
+    name: string;
+}
+
 export interface IMovie {
     adult: boolean;
     backdrop_path: string;
@@ -42,6 +53,7 @@ export const useMoviesStore = defineStore('movies', {
     state: () => ({
         movies: [] as IMovie[],
         genres: [] as IGenre[],
+        languages: [] as ILanguage[],
         page: 1
     }),
     actions: {
@@ -93,6 +105,20 @@ export const useMoviesStore = defineStore('movies', {
 
             this.genres = response.genres;
         },
+        async fetchLanguages() { // Fetching all the genres from TMDB
+            const config = useRuntimeConfig();
+
+            this.languages = await $fetch<ILanguage[]>(
+                `${config.public.baseUrl}configuration/languages`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
+        },
         async getMovieDetails(movieId: number): Promise<IMovieDetails> {
             const config = useRuntimeConfig();
 
@@ -106,6 +132,31 @@ export const useMoviesStore = defineStore('movies', {
                     }
                 }
             );
+        },
+        async getMovieKeywords(movieId: number): Promise<IKeyword[]> {
+            const config = useRuntimeConfig();
+
+            const response = await $fetch<{keywords: IKeyword[]}>(
+                `${config.public.baseUrl}movie/${movieId}/keywords`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
+
+            return response.keywords;
+        },
+        getLanguageNameByISO(isoName: string): string {
+            const found = this.languages.find(lang => lang.iso_639_1 === isoName);
+
+            if (found) {
+                return found.english_name;
+            }
+
+            return '';
         }
     },
 })

@@ -30,15 +30,24 @@
                     </div>
                     <div class="details-block">
                         <h3 class="_title-3">Original Language</h3>
-                        <p>{{movie.original_language}}</p>
+                        <p>{{moviesStore.getLanguageNameByISO(movie.original_language)}}</p>
                     </div>
                     <div class="details-block">
                         <h3 class="_title-3">Budget</h3>
-                        <p>{{movie.budget}}</p>
+                        <p>${{movie.budget}}</p>
                     </div>
                     <div class="details-block">
                         <h3 class="_title-3">Revenue</h3>
                         <p>${{movie.revenue}}</p>
+                    </div>
+                    <div class="details-block">
+                        <h3 class="_title-3">Keywords</h3>
+                        <div class="keywords">
+                            <div
+                                class="keyword"
+                                v-for="keyword in movieKeywords"
+                            >{{keyword.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,7 +71,8 @@ export default defineComponent({
             moviesStore: useMoviesStore(),
             peopleStore: usePeopleStore(),
             movie: {} as IMovieDetails,
-            moviePeople: {} as IMoviePeople
+            moviePeople: {} as IMoviePeople,
+            movieKeywords: [] as IKeyword[],
         }
     },
     methods: {
@@ -75,10 +85,12 @@ export default defineComponent({
     async mounted() {
         const route = useRoute();
 
-        const movieId = route.params.movie_id;
-        this.movie = await this.moviesStore.getMovieDetails(Number(movieId));
+        const movieId = Number(route.params.movie_id);
+        this.movie = await this.moviesStore.getMovieDetails(movieId);
 
-        this.moviePeople = await this.peopleStore.getMoviePeople(Number(movieId));
+        this.moviePeople = await this.peopleStore.getMoviePeople(movieId);
+
+        this.movieKeywords = await this.moviesStore.getMovieKeywords(movieId);
     }
 })
 </script>
@@ -134,7 +146,9 @@ export default defineComponent({
     gap: 1rem;
 }
 .movie-details {
-    min-width: 225px;
+    padding-top: 4rem;
+
+    max-width: 225px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -154,5 +168,25 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+.keywords {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.keyword {
+    padding: 0 1rem;
+
+    width: fit-content;
+    height: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--secondary-color);
+    border-radius: var(--card-border-radius);
 }
 </style>

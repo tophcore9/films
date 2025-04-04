@@ -13,6 +13,7 @@ import {defineComponent} from 'vue'
 import Nav from '~/components/Nav.vue';
 import Footer from '~/components/Footer.vue';
 import {useFavoritesStore} from "~/stores/favoritesStore";
+import {useMoviesStore} from "~/stores/moviesStore";
 
 export default defineComponent({
     name: "default",
@@ -22,11 +23,14 @@ export default defineComponent({
     },
     data() {
         return {
-            favoritesStore: useFavoritesStore()
+            favoritesStore: useFavoritesStore(),
+            moviesStore: useMoviesStore()
         }
     },
     mounted() {
         this.favoritesStore.loadFavoritesFromSessionStorage();
+        this.moviesStore.fetchGenres();
+        this.moviesStore.fetchLanguages();
     }
 })
 </script>
