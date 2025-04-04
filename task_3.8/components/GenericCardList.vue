@@ -64,12 +64,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.card-list{
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+@use '/assets/styles/components/generic_card_list';
 </style>

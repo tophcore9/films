@@ -51,25 +51,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.drop-title {
-    margin-bottom: 1rem;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    user-select: none;
-}
-
-.drop-title:hover {
-    cursor: pointer;
-}
-
-.arrow-icon {
-    transition: transform 0.2s ease-in-out;
-}
-
-.arrow-icon-rotated {
-    transform: rotate(180deg);
-}
+@use '/assets/styles/components/drop_down';
 </style>

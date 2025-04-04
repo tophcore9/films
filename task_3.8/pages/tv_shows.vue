@@ -11,7 +11,3 @@ export default defineComponent({
     name: "tv_shows"
 })
 </script>
-
-<style scoped lang="scss">
-
-</style>

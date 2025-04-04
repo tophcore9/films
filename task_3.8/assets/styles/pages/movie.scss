@@ -1,0 +1,172 @@
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+.movie-banner {
+  padding: 2rem;
+
+  width: 100%;
+  height: 475px;
+
+  position: relative;
+  background-color: black;
+  z-index: -2;
+
+  display: flex;
+  gap: 2rem;
+
+  border-radius: var(--card-border-radius);
+
+  color: white;
+}
+.movie-banner__image {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0.3;
+  z-index: -1;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--card-border-radius);
+}
+.movie-banner__poster {
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+.movie-info {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.movie-details {
+  padding-top: 4rem;
+
+  max-width: 225px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.details-block {
+  min-height: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  font-size: 13px;
+}
+._title-1 {
+  color: white;
+}
+.movie-people__block {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.keywords {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.keyword {
+  padding: 0 1rem;
+
+  width: fit-content;
+  height: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--secondary-color);
+  border-radius: var(--card-border-radius);
+}
+.movie-year {
+  font-weight: 400;
+}
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.separator {
+  height: 100%;
+  width: 1px;
+  background-color: white;
+}
+.movie-overview {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.movie-statistics {
+  height: 4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.clue-person__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.clue-person__job {
+  font-size: 14px;
+}
+.movie-quote {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+.movie-keys {
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.movie-key {
+  display: flex;
+  gap: 0.5rem;
+}
+.user-score {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.user-score-circle {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #DDFD82;
+  border: 5px solid #303030;
+  border-radius: 50%;
+}
+.user-score-value {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #303030;
+  border-radius: 50%;
+}

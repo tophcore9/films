@@ -14,8 +14,8 @@
                     width="1.5rem"
                     height="1.5rem"
                     :url="favoritesStore.isMovieInFavorites(movie.id)
-                    ? './icons/card-favorite-active.svg'
-                    : './icons/card-favorite.svg'"
+                    ? '/icons/card-favorite-active.svg'
+                    : '/icons/card-favorite.svg'"
                 />
             </Button>
         </div>
@@ -37,8 +37,8 @@
                 width="1.5rem"
                 height="1.5rem"
                 :url="favoritesStore.isPersonInFavorites(person.id)
-                    ? './icons/card-favorite-active.svg'
-                    : './icons/card-favorite.svg'"
+                    ? '/icons/card-favorite-active.svg'
+                    : '/icons/card-favorite.svg'"
             />
         </Button>
     </div>
@@ -129,40 +129,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.card {
-    padding: 10px;
-
-    position: relative;
-
-    width: 220px;
-    min-height: fit-content;
-
-    background-color: var(--secondary-color);
-    border-radius: var(--card-border-radius);
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-.card-image {
-    width: 100%;
-    display: block;
-    object-fit: contain;
-    border-radius: var(--card-border-radius);
-}
-.card-body {
-    padding: 1rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.card-text {
-    font-size: 15px;
-}
-.is-favorite {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
+@use '/assets/styles/components/generic_card';
 </style>

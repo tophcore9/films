@@ -49,14 +49,29 @@ export interface IMovieDetails extends IMovie {
     tagline: string;
 }
 
+export interface IMoviesByPerson extends IMovie {
+    cast: IMovie[];
+    crew: IMovie[];
+}
+
+interface IMoviesStore {
+    movies: IMovie[];
+    genresQuery: string;
+    sortQuery: string;
+    keywordsQuery: string;
+    page: number;
+}
+
 export const useMoviesStore = defineStore('movies', {
-    state: () => ({
-        movies: [] as IMovie[],
-        genresQuery: '',
-        sortQuery: 'popularity.desc',
-        keywordsQuery: '',
-        page: 1
-    }),
+    state: (): IMoviesStore => {
+        return {
+            movies: [],
+            genresQuery: '',
+            sortQuery: 'popularity.desc',
+            keywordsQuery: '',
+            page: 1
+        }
+    },
     actions: {
         async fetchMovies() { // Fetching movies from TMDB
             const config = useRuntimeConfig();

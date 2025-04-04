@@ -24,11 +24,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.people-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-}
+@use '/assets/styles/pages/people';
 </style>

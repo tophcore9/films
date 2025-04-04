@@ -56,38 +56,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.footer {
-    padding: 3rem 0;
-
-    width: 100%;
-    min-height: 400px;
-
-    background-color: #303030;
-    color: white;
-}
-.footer-left {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.footer-content, .footer-lists {
-    display: flex;
-    justify-content: space-between;
-}
-.footer-lists {
-    gap: 70px;
-}
-
-.footer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-.footer-list__title {
-    text-transform: uppercase;
-    font-weight: 700;
-}
-.footer-list__item {
-    opacity: 0.8;
-}
+@use '/assets/styles/components/footer';
 </style>

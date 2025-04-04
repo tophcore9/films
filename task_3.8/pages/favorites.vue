@@ -28,9 +28,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.favorite-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+@use '/assets/styles/pages/favorites';
 </style>

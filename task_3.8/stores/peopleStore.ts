@@ -37,11 +37,18 @@ export interface IMoviePeople {
     crew: ICrewMember[];
 }
 
+interface IPeopleStore {
+    people: IPerson[];
+    page: number;
+}
+
 export const usePeopleStore = defineStore('people', {
-    state: () => ({
-        people: [] as IPerson[],
-        page: 1
-    }),
+    state: (): IPeopleStore => {
+        return {
+            people: [],
+            page: 1
+        }
+    },
     actions: {
         async fetchPeople() { // Fetching top rated people from TMDB
             const config = useRuntimeConfig();
@@ -103,5 +110,19 @@ export const usePeopleStore = defineStore('people', {
                 }
             );
         },
+        async getMoviesByPerson(personId: number): Promise<IMoviesByPerson> {
+            const config = useRuntimeConfig();
+
+            return await $fetch<IMoviesByPerson>(
+                `${config.public.baseUrl}person/${personId}/movie_credits`,
+                {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${config.public.apiKey}`
+                    }
+                }
+            );
+        }
     }
 });

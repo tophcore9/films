@@ -1,11 +1,18 @@
 import { defineStore } from 'pinia';
 import {process} from "std-env";
 
+interface IFavoritesStore {
+    favoriteMovies: IMovie[];
+    favoritePeople: IPerson[];
+}
+
 export const useFavoritesStore = defineStore('favorites', {
-    state: () => ({
-        favoriteMovies: [] as IMovie[],
-        favoritePeople: [] as IPerson[]
-    }),
+    state: (): IFavoritesStore => {
+        return {
+            favoriteMovies: [],
+            favoritePeople: [],
+        }
+    },
     actions: {
         isMovieInFavorites(movieId: number): boolean {
             const index = this.favoriteMovies.findIndex(movie => movie.id === movieId);

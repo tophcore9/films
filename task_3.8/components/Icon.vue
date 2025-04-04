@@ -32,9 +32,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.icon {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+@use '/assets/styles/components/icon';
 </style>

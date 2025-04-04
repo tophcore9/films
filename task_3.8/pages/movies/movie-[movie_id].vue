@@ -1,10 +1,3 @@
-<!-- MVP
-minors:
-  - Date format (yyyy/mm/dd)
-  - Value format ($1,000,000,00)
-  - User score
--->
-
 <template>
     <div class="_wrapper">
         <div class="movie-container">
@@ -55,8 +48,13 @@ minors:
                             <div class="clue-person__job">{{findPersonByJob('Producer')?.job}}</div>
                         </div>
                         <div class="separator"></div>
-                        <div>
-                            User Score
+                        <div class="user-score">
+                            <div class="user-score-circle">
+                                <div class="user-score-value">
+                                    {{userScore}}
+                                </div>
+                            </div>
+                            <p>User Score</p>
                         </div>
                     </div>
                 </div>
@@ -137,7 +135,8 @@ export default defineComponent({
             movieKeywords: [] as IKeyword[],
             isInFavorites: false,
             movieReleaseDate: new Date(),
-            movieLanguage: ''
+            movieLanguage: '',
+            userScore: '',
         }
     },
     methods: {
@@ -175,153 +174,11 @@ export default defineComponent({
         this.isInFavorites = this.favoritesStore.isMovieInFavorites(movieId);
         this.movieReleaseDate = new Date(this.movie.release_date);
         this.movieLanguage = await this.moviesStore.getLanguageNameByISO(this.movie.original_language);
+        this.userScore = this.movie.vote_average.toFixed(1);
     }
 })
 </script>
 
 <style scoped lang="scss">
-.movie-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-}
-.movie-banner {
-    padding: 2rem;
-
-    width: 100%;
-    height: 475px;
-
-    position: relative;
-    background-color: black;
-    z-index: -2;
-
-    display: flex;
-    gap: 2rem;
-
-    border-radius: var(--card-border-radius);
-
-    color: white;
-}
-.movie-banner__image {
-    width: 100%;
-    height: 100%;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    opacity: 0.3;
-    z-index: -1;
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: var(--card-border-radius);
-}
-.movie-banner__poster {
-    object-fit: cover;
-    border-radius: 1.5rem;
-}
-.movie-info {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-}
-.movie-details {
-    padding-top: 4rem;
-
-    max-width: 225px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.details-block {
-    min-height: 55px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    font-size: 13px;
-}
-._title-1 {
-    color: white;
-}
-.movie-people__block {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-.keywords {
-    width: 100%;
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-.keyword {
-    padding: 0 1rem;
-
-    width: fit-content;
-    height: 2rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--secondary-color);
-    border-radius: var(--card-border-radius);
-}
-.movie-year {
-    font-weight: 400;
-}
-.banner-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-.separator {
-    height: 100%;
-    width: 1px;
-    background-color: white;
-}
-.movie-overview {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-}
-.movie-statistics {
-    height: 4rem;
-
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-}
-.clue-person__block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.clue-person__job {
-    font-size: 14px;
-}
-.movie-quote {
-    font-size: 18px;
-    font-weight: 500;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.8);
-}
-.movie-keys {
-    height: 27px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.movie-key {
-    display: flex;
-    gap: 0.5rem;
-}
+@use '/assets/styles/pages/movie';
 </style>
