@@ -80,10 +80,11 @@ body, html {
 
 ._title-1 {
     font-weight: 800;
-    font-size: 48px;
+    font-size: 3rem;
+    line-height: 4rem;
 }
 ._title-2 {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 ._title-3 {
     font-size: 18px;
