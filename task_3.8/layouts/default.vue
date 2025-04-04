@@ -66,6 +66,19 @@ body, html {
     height: 100%;
 }
 
+._input {
+    padding: 0 1rem;
+
+    height: 50px;
+    width: 100%;
+
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
 ._content {
     padding-top: 90px;
     width: 100%;

@@ -2,9 +2,21 @@
     <div class="_wrapper">
         <div class="movies-container">
             <div class="movies-filters">
-                <DropDown :is-opened="false" title="Filters">
-                    asdlkfj
+                <DropDown :is-opened="true" title="Sort">
+                    <Select :options="sorts" v-model="moviesStore.sortQuery"/>
                 </DropDown>
+
+                <DropDown :is-opened="true" title="Filters">
+                    Keywords
+                    <input class="_input" type="text" placeholder="Filter by keywords...">
+                    <div class="horizontal-separator"></div>
+                    Genres
+                    <div class="genres">
+                        <div v-for="genre in genres">{{genre.name}}</div>
+                    </div>
+                </DropDown>
+
+                <Button width="100%">Search</Button>
             </div>
             <div class="movies-content">
                 <GenericCardList :movies="moviesStore.movies" :next-page-handler="moviesStore.fetchNextPage"/>
@@ -20,6 +32,7 @@ import {usePeopleStore} from "~/stores/peopleStore";
 import Button from '~/components/Button.vue';
 import GenericCardList from '~/components/GenericCardList.vue';
 import DropDown from '~/components/DropDown.vue';
+import Select from '~/components/Select.vue';
 
 export default defineComponent({
     name: "index",
@@ -27,16 +40,26 @@ export default defineComponent({
         Button,
         GenericCardList,
         DropDown,
+        Select
     },
     data() {
         return {
             moviesStore: useMoviesStore(),
-            peopleStore: usePeopleStore()
+            peopleStore: usePeopleStore(),
+            genres: [] as IGenre[],
+            sorts: [
+                {label: "desc", value: "desc"},
+                {label: "desc", value: "desc"},
+                {label: "desc", value: "desc"},
+                {label: "desc", value: "desc"},
+                {label: "desc", value: "desc"},
+            ]
         }
     },
     async mounted() {
         await this.moviesStore.fetchMovies();
         await this.peopleStore.fetchPeople();
+        this.genres = await this.moviesStore.getGenres();
     }
 })
 </script>
@@ -59,5 +82,10 @@ export default defineComponent({
 }
 .movies-filters {
     min-width: 225px;
+}
+.horizontal-separator {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
 }
 </style>
