@@ -1,12 +1,7 @@
 <template>
     <div class="_wrapper">
         <div class="people-content">
-            <GenericCardList :people="peopleStore.people"/>
-            <Button
-                @click="peopleStore.fetchNextPage()"
-            >
-                Load more
-            </Button>
+            <GenericCardList :people="peopleStore.people" :load-func="peopleStore.fetchNextPage"/>
         </div>
     </div>
 </template>

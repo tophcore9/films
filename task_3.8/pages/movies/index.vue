@@ -5,12 +5,7 @@
 
             </div>
             <div class="movies-content">
-                <GenericCardList :movies="moviesStore.movies"/>
-                <Button
-                    @click="moviesStore.fetchNextPage()"
-                >
-                    Load more
-                </Button>
+                <GenericCardList :movies="moviesStore.movies" :next-page-handler="moviesStore.fetchNextPage"/>
             </div>
         </div>
     </div>

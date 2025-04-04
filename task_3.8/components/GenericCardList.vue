@@ -12,6 +12,7 @@
         <!-- CREW MEMBERS -->
         <Card v-else-if="crewMembers.length > 0" v-for="crewMember in crewMembers" :crew-member="crewMember" :key="crewMember.id"/>
     </div>
+    <div id="end-of-list"></div>
 </template>
 
 <script lang="ts">
@@ -40,7 +41,25 @@ export default defineComponent({
             type: Array as PropType<ICrewMember[]>,
             default: []
         },
-    }
+        nextPageHandler: {
+            type: Function
+        }
+    },
+    mounted() {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                if (this.nextPageHandler) {
+                    this.nextPageHandler();
+                }
+            }
+        })
+
+        const endOfList = document.querySelector('#end-of-list');
+
+        if (endOfList) {
+            observer.observe(endOfList);
+        }
+    },
 })
 </script>
 
