@@ -3,7 +3,9 @@
         <div class="_wrapper">
             <div class="nav-content">
                 <div class="nav-left">
-                    <Icon :url="isScrolled ? '../icons/logo-white.png' : '../icons/logo-dark.png'" width="156px"/>
+                    <NuxtLink to="/movies">
+                        <Icon :url="isScrolled ? '../icons/logo-white.png' : '../icons/logo-dark.png'" width="156px"/>
+                    </NuxtLink>
                     <div class="nav-left-links">
                         <NuxtLink :class="handleCurrentPageClass('movies')" to="/movies">Movies</NuxtLink>
                         <NuxtLink :class="handleCurrentPageClass('tv_shows')" to="/tv_shows">TV Shows</NuxtLink>

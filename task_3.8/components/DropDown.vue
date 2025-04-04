@@ -52,6 +52,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .drop-title {
+    margin-bottom: 1rem;
+
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -58,15 +58,11 @@ export const useMoviesStore = defineStore('movies', {
         page: 1
     }),
     actions: {
-        async fetchMovies() { // Fetching top rated movies from TMDB
+        async fetchMovies() { // Fetching movies from TMDB
             const config = useRuntimeConfig();
 
             const response = await $fetch<{results: IMovie[]}>(
-                `${config.public.baseUrl}discover/movie?
-                page=${this.page = 1}&
-                sort_by=${this.sortQuery}&
-                with_keywords=${this.keywordsQuery}&
-                with_genres=${this.genresQuery}`,
+                `${config.public.baseUrl}discover/movie?page=${this.page = 1}&sort_by=${this.sortQuery}&with_keywords=${this.keywordsQuery}&with_genres=${this.genresQuery}`,
                 {
                     method: 'GET',
                     headers: {
@@ -168,12 +164,11 @@ export const useMoviesStore = defineStore('movies', {
                 }
             );
 
-            const keywordsIds: number[] = [];
-
-            response.results.forEach(keyword => keywordsIds.push(keyword.id))
-
-
-            this.keywordsQuery = keywordsIds.toString();
+            if (response.results.length > 0) {
+                this.keywordsQuery = response.results[0].id.toString();
+            } else {
+                this.keywordsQuery = '';
+            }
         },
         async getLanguageNameByISO(isoName: string): Promise<string> {
             const languages = await this.getLanguages();

@@ -1,8 +1,14 @@
 <template>
     <div class="custom-select" :class="{ 'is-open': isOpen }">
-        <div class="selected-option" @click="toggleDropdown">
+        <div class="selected-option _input" @click="toggleDropdown">
             {{ selectedOption || placeholder }}
-            <span class="arrow">{{ isOpen ? '▲' : '▼' }}</span>
+            <Icon
+                class="arrow-icon"
+                :class="isOpen ? 'arrow-icon-rotated' : ''"
+                height="16px"
+                width="16px"
+                url="../icons/select-arrow.svg"
+            />
         </div>
         <div v-if="isOpen" class="dropdown">
             <input
@@ -24,6 +30,8 @@
 </template>
 
 <script lang="ts">
+import Icon from '~/components/Icon.vue';
+
 interface Option {
     label: string;
     value: string;
@@ -72,7 +80,6 @@ export default {
 <style scoped lang="scss">
 .custom-select {
     position: relative;
-    font-family: Arial, sans-serif;
 }
 
 .selected-option {
@@ -80,21 +87,12 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    background-color: #fff;
 
-    font-weight: 700;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
 
 .selected-option:hover {
     border-color: #888;
-}
-
-.arrow {
-    font-size: 12px;
 }
 
 .dropdown {
@@ -108,6 +106,7 @@ export default {
     z-index: 1;
     overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
 }
 
 .dropdown-item {
@@ -129,5 +128,13 @@ export default {
 
 .is-open .selected-option {
     border-color: #888;
+}
+
+.arrow-icon {
+    transition: transform 0.2s ease-in-out;
+}
+
+.arrow-icon-rotated {
+    transform: rotate(180deg);
 }
 </style>

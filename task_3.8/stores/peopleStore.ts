@@ -37,8 +37,6 @@ export interface IMoviePeople {
     crew: ICrewMember[];
 }
 
-const personImageWidth = 200;
-
 export const usePeopleStore = defineStore('people', {
     state: () => ({
         people: [] as IPerson[],

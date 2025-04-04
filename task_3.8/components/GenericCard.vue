@@ -1,6 +1,10 @@
 <template>
     <!-- MOVIES -->
-    <div @click="navigateTo(`/movies/movie-${movie.id}`)" class="card" v-if="movie !== undefined && movie.poster_path !== null">
+    <div
+        @click="navigateTo(`/movies/movie-${movie.id}`)"
+        class="card"
+        v-if="movie !== undefined && movie.poster_path !== null"
+    >
         <img class="card-image" :src="getImageUrl()" alt="no">
         <div class="card-body">
             <h4 class="_title-4">{{movie.title}}</h4>
@@ -18,7 +22,11 @@
     </div>
 
     <!-- PEOPLE -->
-    <div @click="navigateTo(`/people/person-${person.id}`)" class="card" v-if="person !== undefined && person.profile_path !== null">
+    <div
+        @click="navigateTo(`/people/person-${person.id}`)"
+        class="card"
+        v-if="person !== undefined"
+    >
         <img class="card-image" :src="getImageUrl()" alt="no">
         <div class="card-body">
             <h4 class="_title-4">{{person.name}}</h4>
@@ -97,15 +105,19 @@ export default defineComponent({
 
             let path: string = '';
 
-            if (this.person !== undefined) path = this.person.profile_path;
-            else if (this.movie !== undefined) path = this.movie.poster_path;
-            else if (this.castMember !== undefined) path = this.castMember.profile_path;
-            else if (this.crewMember !== undefined) path = this.crewMember.profile_path;
+            if (this.person !== undefined && this.person.profile_path !== null) path = this.person.profile_path;
+            else if (this.movie !== undefined && this.movie.poster_path !== null) path = this.movie.poster_path;
+            else if (this.castMember !== undefined && this.castMember.profile_path !== null) path = this.castMember.profile_path;
+            else if (this.crewMember !== undefined && this.crewMember.profile_path !== null) path = this.crewMember.profile_path;
+            else return '../icons/no_picture.png';
 
             return `${config.public.imagesUrl}w${this.imageWidth}/${path}`;
         },
         formatDate(apiDate: string): string {
+            if (apiDate === '') return 'No data';
+
             const date = new Date(apiDate);
+
             return new Intl.DateTimeFormat('en-US', {
                 month: 'short',
                 day: 'numeric',
