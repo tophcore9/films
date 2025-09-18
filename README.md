@@ -1,75 +1,81 @@
-# Nuxt Minimal Starter
+# Films
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a dynamic front-end application for browsing films and TV shows. It's built with **Nuxt.js** and is designed to showcase your skills in creating interactive and well-structured user interfaces with a focus on a smooth user experience.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## 🚀 Getting Started
 
-```bash
-# npm
-npm install
+### Installation
 
-# pnpm
-pnpm install
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/tophcore9/films.git
+    cd films
+    ```
 
-# yarn
-yarn install
+2.  **Install project dependencies:**
+    ```bash
+    yarn
+    ```
 
-# bun
-bun install
-```
+### Running the Project
 
-## Development Server
+* **For development (with hot-reloading):**
+    ```bash
+    yarn dev
+    ```
 
-Start the development server on `http://localhost:3000`:
+* **For static site generation:**
+    ```bash
+    yarn generate
+    ```
 
-```bash
-# npm
-npm run dev
+* **For production (Server-Side Rendering):**
+    ```bash
+    yarn build
+    yarn start
+    ```
 
-# pnpm
-pnpm dev
+---
 
-# yarn
-yarn dev
+## 🛠️ Technologies
 
-# bun
-bun run dev
-```
+* **Nuxt.js**
+* **Vue.js** (Underlying Framework)
+* **HTML5**
+* **CSS3**
+* **JavaScript**
 
-## Production
+---
 
-Build the application for production:
+## ✨ Features
 
-```bash
-# npm
-npm run build
+* Dynamic display of a list of films
+* Clean and modern UI/UX design
+* Interactive elements for filtering or searching
+* Responsive layout for various devices
 
-# pnpm
-pnpm build
+---
 
-# yarn
-yarn build
+## 🤝 Contributing
 
-# bun
-bun run build
-```
+We welcome contributions! If you would like to help improve this project, please follow these steps:
 
-Locally preview production build:
+1.  Fork this repository.
+2.  Create a new branch (`git checkout -b feature/your-feature-name`).
+3.  Make your changes and commit them (`git commit -m 'feat: add a new feature'`).
+4.  Push to your branch (`git push origin feature/your-feature-name`).
+5.  Create a **Pull Request**.
 
-```bash
-# npm
-npm run preview
+---
 
-# pnpm
-pnpm preview
+## 📄 License
 
-# yarn
-yarn preview
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-# bun
-bun run preview
-```
+---
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 👨‍💻 Author
+
+* **Oleksii Paziura** - [@tophcore9](https://github.com/tophcore9)
