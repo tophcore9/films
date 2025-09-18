@@ -6,6 +6,10 @@ This is a dynamic front-end application for browsing films and TV shows. It's bu
 
 ## 🚀 Getting Started
 
+### Preview
+
+https://github.com/user-attachments/assets/3990ed8f-eb45-48a4-b25d-c4ca05935765
+
 ### Installation
 
 1.  **Clone the repository:**
