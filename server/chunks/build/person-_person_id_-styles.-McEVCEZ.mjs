@@ -1,6 +1,0 @@
-const person__person_id__vue_vue_type_style_index_0_scoped_ffd88eea_lang = ".container[data-v-ffd88eea]{flex-direction:column}.container[data-v-ffd88eea],.header[data-v-ffd88eea]{display:flex;gap:2rem;height:100%;width:100%}.image[data-v-ffd88eea]{border-radius:var(--card-border-radius);display:block;max-height:600px;-o-object-fit:cover;object-fit:cover}.info[data-v-ffd88eea]{display:flex;flex-direction:column;gap:2rem;padding-top:1rem}.films-block[data-v-ffd88eea],.info-block[data-v-ffd88eea]{display:flex;flex-direction:column;gap:1rem}.header-content[data-v-ffd88eea]{display:flex;gap:2rem}.biography-text[data-v-ffd88eea]{line-height:24px}";
-
-const person_person_id_Styles_McEVCEZ = [person__person_id__vue_vue_type_style_index_0_scoped_ffd88eea_lang];
-
-export { person_person_id_Styles_McEVCEZ as default };
-//# sourceMappingURL=person-_person_id_-styles.-McEVCEZ.mjs.map
