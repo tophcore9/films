@@ -10,21 +10,23 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import { defineComponent } from 'vue';
 import GenericCardList from "~/components/GenericCardList.vue";
-import {useFavoritesStore} from "~/stores/favoritesStore";
+import { useFavoritesStore } from "~/stores/favoritesStore";
 
 export default defineComponent({
     name: "favorites",
     components: {
         GenericCardList
     },
-    data() {
+    setup() {
+        const favoritesStore = useFavoritesStore();
+
         return {
-            favoritesStore: useFavoritesStore(),
-        }
+            favoritesStore
+        };
     },
-})
+});
 </script>
 
 <style scoped lang="scss">

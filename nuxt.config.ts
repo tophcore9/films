@@ -2,17 +2,22 @@
 import {process} from "std-env";
 
 export default defineNuxtConfig({
+  app: {
+    baseURL: '/films/'
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: ['@pinia/nuxt'],
   runtimeConfig: {
     public: {
       apiKey: process.env.API_KEY,
-      baseUrl: process.env.BASE_URL,
+      baseUrl: process.env.BASE_API_URL,
       imagesUrl: process.env.IMAGES_URL,
     }
   },
-  routeRules: {
-    '/': {redirect: '/movies'}
+  nitro: {
+    prerender: {
+      routes: ['/', '/movies']
+    }
   }
 })
