@@ -1,1 +1,0 @@
-import{g as e,_ as o,c as t,a as n,o as a}from"./BqIvsgjQ.js";const r=e({name:"tv_shows"}),c={class:"_wrapper"};function _(p,s,d,f,i,l){return a(),t("div",c,s[0]||(s[0]=[n("h1",null,"TV Shows",-1)]))}const u=o(r,[["render",_]]);export{u as default};
